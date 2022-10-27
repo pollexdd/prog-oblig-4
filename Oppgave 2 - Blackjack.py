@@ -1,34 +1,42 @@
 import random
-full_deck = {"Two of clubs": 2, "Three of clubs": 3, "Four of clubs": 4, "Five of clubs": 5, "Six of clubs": 6,
-             "Seven of clubs": 7, "Eight of clubs": 8, "Nine of clubs": 9, "Ten of clubs": 10,
-             "Jack of clubs": 10, "Queen of clubs": 10, "King of clubs": 10, "Ace of clubs": 11,
-             "Two of diamonds": 2, "Three of diamonds": 3, "Four of diamonds": 4, 
-"Five of diamonds": 5,
-             "Six of diamonds": 6, "Seven of diamonds": 7, "Eight of diamonds": 8, 
-"Nine of diamonds": 9,
-             "Ten of diamonds": 10, "Jack of diamonds": 10, "Queen of diamonds": 
-10, "King of diamonds": 10,
-             "Ace of diamonds": 11,
-             "Two of hearts": 2, "Three of hearts": 3, "Four of hearts": 4, "Five of hearts": 5, "Six of hearts": 6,
-             "Seven of hearts": 7, "Eight of hearts": 8, "Nine of hearts": 9, "Ten of hearts": 10,
-             "Jack of hearts": 10, "Queen of hearts": 10, "King of hearts": 10, 
-"Ace of hearts": 11,
-             "Two of spades": 2, "Three of spades": 3, "Four of spades": 4, "Five of spades": 5, "Six of spades": 6,
-             "Seven of spades": 7, "Eight of spades": 8, "Nine of spades": 9, "Ten of spades": 10,
-             "Jack of spades": 10, "Queen of spades": 10, "King of spades": 10, 
-"Ace of spades": 11,
-             }
-def get_new_shuffled_deck():
-    deck = list(full_deck.keys())
-    random.shuffle(deck)
-    return deck
 
-def get_card_value(card):
-    return full_deck[card]
+dealer_cards = []
+player_cards = []
 
-def calculate_hand_value(hand):
-    hand_value = 0
-    for card in hand:
-        hand_value += get_card_value(card)
-    return hand_value
 
+while len(dealer_cards) != 2:
+    dealer_cards.append(random.randint(1, 11))
+    if len(dealer_cards) == 2:
+        print("Dealer has X &", dealer_cards[1])
+
+# Player Cards
+while len(player_cards) != 2:
+    player_cards.append(random.randint(1, 11))
+    if len(player_cards) == 2:
+        print("You have ", player_cards)
+ 
+ # Sum of the Dealer cards
+if sum(dealer_cards) == 21:
+    print("Dealer has 21 and wins!")
+elif sum(dealer_cards) > 21:
+    print("Dealer has busted!")
+
+# Sum of the Player cards
+while sum(player_cards) < 21:
+    action_taken = str(input("Do you want to stay or hit?  "))
+    if action_taken == "hit":
+        player_cards.append(random.randint(1, 11))
+        print("You now have a total of " + str(sum(player_cards)) + " from these cards ", player_cards)
+    else:
+        print("The dealer has a total of " + str(sum(dealer_cards)) + " with ", dealer_cards)
+        print("You have a total of " + str(sum(player_cards)) + " with ", player_cards)
+        if sum(dealer_cards) > sum(player_cards):
+            print("Dealer wins!")
+        else:
+            print("You win!")
+            break
+
+if sum(player_cards) > 21:
+    print("You BUSTED! Dealer wins.")
+elif sum(player_cards) == 21:
+    print("You have BLACKJACK! You Win!! 21")
