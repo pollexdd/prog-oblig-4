@@ -3,33 +3,62 @@ import random
 dealer_cards = []
 player_cards = []
 
-   
-def Blackjack():
-    # Klarte ikke å få til chips betting
-    Chips = int(10)
-    bet = int(input("you have "+ str(Chips) + " chips how many chips do you want to bet? "))
 
-    # dealer får 2 kort
+
+class Chips:   # keep track of chips
+
+    def __init__(self):
+        self.total = 100
+        self.bet = 0
+
+    def win_bet(self):
+        self.total += self.bet
+
+    def lose_bet(self):
+        self.total -= self.bet
+    def skrivut():
+        print(F'you have {Chips.total} chips')
+
+def take_bet(chips):  # ask for user's bet
+
+    while True:
+        try:
+            chips.bet = int(input("How many chips would you like to bet? "))
+        except ValueError:
+            print("Sorry! Please can you type in a number: ")
+        else:
+            if chips.bet > chips.total:
+                print("You bet can't exceed 100!")
+            else:
+                break
+
+
+def Blackjack():
+    player_chips = Chips()
+    
+
+
+    take_bet(player_chips)
     dealer_cards.append(random.randint(1, 11))
     dealer_cards.append(random.randint(1, 11))
     print("Dealer has X &", dealer_cards[1])
         
-    # spiller får 2 kort
+
     player_cards.append(random.randint(1, 11))
     player_cards.append(random.randint(1, 11))
     print("You have ", player_cards)   
 
     if sum(dealer_cards) == 21:
         print("Dealer has 21 and wins!")
-        Chips -= bet
+        Chips.lose_bet
     elif sum(dealer_cards) > 21:
         print("Dealer has busted!")
-        Chips += bet
+        Chips.win_bet
         
-         
+        
    
 
-    # While loop helt til spilleren velger stay
+
     while sum(player_cards) < 21:
         action_taken = str(input("Do you want to stay or hit?  "))
                 
@@ -46,9 +75,8 @@ def Blackjack():
                     break
             elif sum(player_cards) > 21:
                     print("you busted")
-                    Chips -= bet
+                    Chips.lose_bet
                     break
-        # Hvis man velger stay tar dealeren kort helt til han er under 18
         if action_taken == "stay":
             while sum(dealer_cards) < 18:
                 dealer_cards.append(random.randint(1, 11))
@@ -69,26 +97,26 @@ def Blackjack():
                 break
             elif sum(dealer_cards) > 21:
                     print("dealer busted you win!")
-                    Chips += bet
+                    Chips.win_bet
                     break
 
             elif sum(dealer_cards) > sum(player_cards):
                 print("Dealer wins!")
-                Chips -= bet
+                Chips.lose_bet
                 break
 
             else:
                 print("You win!")
-                Chips += bet
+                Chips.win_bet
                 break
 
 
 x = True
 while x is True:
-    # sletter alt i listene
+    # stake = input("you have "+ str(chips) + " chips how many chips do you want to bet? ")
+    Chips.skrivut()
     player_cards.clear()
     dealer_cards.clear()
-    # kjører blackjack spillet
     Blackjack()
 
 

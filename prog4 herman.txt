@@ -1,0 +1,15 @@
+Teorioppgave 1 - Exception 
+Det er en måte at programmet forsetter å kjøre selv om det har skjedd en feil. Og kan gi informasjon om hva som er feil i programmet.
+
+Teorioppgave 2 - Klasse 
+
+en klasse er en blueprint av noe i programmet. man kan ferdig lage klasser og bare putte inn variable så man slipper å skrive samme kode flere ganger.
+
+Teorioppgave 3 - Objekt
+
+objekter er en underklasse av klassen man kan sette opp drivstoff som et objekt under klassen bil.
+
+Programmeringsoppgave 2 - Dokumentasjon
+
+Det var vanskelig i starte prøvde først med file som ble lagt ut, men byttet kjapt til min egen metode. det var vanskelig å få spillet til å kjøre i en loop. Jeg klarte ikke og få til chip betting prøve et par dager, men fikk det ikke til.
+
