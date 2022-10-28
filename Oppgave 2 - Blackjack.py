@@ -1,42 +1,42 @@
+from operator import itemgetter
 import random
 
-dealer_cards = []
-player_cards = []
+
+class card:
+    def __init__(self,value,suit):
+        self.cost = value
+        self.value = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'][value-1]
+        self.suit = '♥♦♣♠'[suit]
+
+def price(self):
+    if self.cost >= 10:
+        return 10
+    elif self.cost == 1:
+        return 11
+    return self.cost
+
+class deck:
+    def __init__(self):
+        self.card = []
+
+    def generate(self):
+        for i in range(1, 14):
+            for j in range(4):
+                self.cards.append(card(i, j))    
+
+    def draw(self, iteration):
+        cards = []
+        for i in range(iteration):
+            card = random.choice(self, cards)
+            self.cards.remove(card)
+            cards.append(card)
+        return cards
+
+    def count(self):
+        return len(self.cards)
+    
+
+    
 
 
-while len(dealer_cards) != 2:
-    dealer_cards.append(random.randint(1, 11))
-    if len(dealer_cards) == 2:
-        print("Dealer has X &", dealer_cards[1])
 
-# Player Cards
-while len(player_cards) != 2:
-    player_cards.append(random.randint(1, 11))
-    if len(player_cards) == 2:
-        print("You have ", player_cards)
- 
- # Sum of the Dealer cards
-if sum(dealer_cards) == 21:
-    print("Dealer has 21 and wins!")
-elif sum(dealer_cards) > 21:
-    print("Dealer has busted!")
-
-# Sum of the Player cards
-while sum(player_cards) < 21:
-    action_taken = str(input("Do you want to stay or hit?  "))
-    if action_taken == "hit":
-        player_cards.append(random.randint(1, 11))
-        print("You now have a total of " + str(sum(player_cards)) + " from these cards ", player_cards)
-    else:
-        print("The dealer has a total of " + str(sum(dealer_cards)) + " with ", dealer_cards)
-        print("You have a total of " + str(sum(player_cards)) + " with ", player_cards)
-        if sum(dealer_cards) > sum(player_cards):
-            print("Dealer wins!")
-        else:
-            print("You win!")
-            break
-
-if sum(player_cards) > 21:
-    print("You BUSTED! Dealer wins.")
-elif sum(player_cards) == 21:
-    print("You have BLACKJACK! You Win!! 21")
